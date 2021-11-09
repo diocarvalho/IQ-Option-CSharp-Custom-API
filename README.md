@@ -1,4 +1,4 @@
-# IQ-option-C#-custom-api
+# IQOptionNetCoreCustomAPI
 I'm creating an custom IQ Option NetCore Api , to help peoples who want to automated create robots.
 ## For now, it's working:
 Get Server Time;
