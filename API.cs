@@ -5,11 +5,11 @@ using System.Collections.Concurrent;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Net;
-using IqApiNetFramework.Models;
-using IqApiNetFramework.Utilities;
+using IqApiNetCore.Models;
+using IqApiNetCore.Utilities;
 using System.Text.Json;
 using System.Collections.Specialized;
-namespace IqApiNetFramework
+namespace IqApiNetCore
 {    
     public class Message
     {
@@ -542,16 +542,16 @@ namespace IqApiNetFramework
 
                 var jd = JsonDocument.Parse(tcs.Task.Result.id.ToString());
                 var cSearch = jd.RootElement.GetProperty("candles");
-                int cnt = 0;
+                int count = 0;
                 foreach (var c in cSearch.EnumerateArray())
                 {
-                    Candle candle = JsonSerializer.Deserialize<Candle>(cSearch[cnt].ToString());
+                    Candle candle = JsonSerializer.Deserialize<Candle>(cSearch[count].ToString());
                     candle.dir = (decimal)(candle.close - candle.open);
                     candle.fromDateTime = TimeStamp.FromTimeStamp(candle.from);
                     candle.toDateTime = TimeStamp.FromTimeStamp(candle.to);
                     if (candle.fromDateTime.Minute != serverTime.GetLocalServerDateTime().Minute || candle.fromDateTime.Hour != serverTime.GetLocalServerDateTime().Hour)
                         candles.Add(candle);
-                    cnt++;
+                    count++;
                 }
                 tcs2.TrySetResult(candles);
                 return tcs2.Task;
@@ -692,7 +692,7 @@ namespace IqApiNetFramework
                 {
                     gain = value;
                     op.result = "loose";
-                    logger.Log("Result: " + op.result + ", Loss: " + (value), ConsoleColor.Red);
+                    logger.Log("Resul: " + op.result + ", Loss: " + (value), ConsoleColor.Red);
                 }
                 else
                 {
