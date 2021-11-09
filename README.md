@@ -21,6 +21,13 @@ Set Local Time;
 * Horizontal Support and Resistance;
 ## Usage:
 ## Basic Functions
+
+### Libraries
+```
+using IqApiNetCore;
+using IqApiNetCore.Models;
+using IqApiNetCore.Utilities;
+```
 ### Connect
 ```
 bool debug = false;
@@ -45,7 +52,7 @@ DateTime serverDateTime = api.serverTime.GetRealServerDateTime();
 ```
 long lastCandleTimeStamp = TimeStamp.FromDateTime(serverDateTime);
 ```
-### GetActive List
+### Get Active List
 ```
 (List<Active> binaryActives, List<Active> turboActives) = await api.GetActiveOptionDetailAsync();
 ```
@@ -59,7 +66,10 @@ List<Candle> candles = await api.GetCandlesAsync(active, periodInSeconds, lastCa
 ```
 ### Get Current Candle
 ```
+api.StartCandlesStream(); //used to start receiving candle realtime
 Candle lastCandle = await api.GetRealTimeCandlesAsync(active);
+//after enable, disable candlesStream if you do not use
+//api.StopCandlesStream();
 ```
 ### Buy
 ```
