@@ -80,11 +80,11 @@ float[] sma = Indicators.GetSMA(period, candleList)
 ```
 ### Exponential Moving Averages
 ```
+int period 12;
 float[] ema = Indicators.GetEMA(period, candleList)
 ```
 ### Bollinger Band
 ```
-int period 30;
 int deviation = 2;
 BollingerBand[] bb = Indicators.GetBollingerBand(period, deviation, candleList);
 ```
