@@ -21,6 +21,13 @@ Set Local Time;
 * Horizontal Support and Resistance;
 ## Usage:
 ## Basic Functions
+
+### Libraries
+```
+using IqApiNetCore;
+using IqApiNetCore.Models;
+using IqApiNetCore.Utilities;
+```
 ### Connect
 ```
 bool debug = false;
