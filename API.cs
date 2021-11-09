@@ -686,18 +686,18 @@ namespace IqApiNetFramework
                 {
                     gain = op.win_amount - value;
                     op.result = "win";
-                    logger.Log("Resultado: " + op.result + ", Lucro: " + (gain), ConsoleColor.Green);
+                    logger.Log("Result: " + op.result + ", Profit: " + (gain), ConsoleColor.Green);
                 }
                 else if (op.result == "loose" || (op.result == null && op.win == "loose"))
                 {
                     gain = value;
                     op.result = "loose";
-                    logger.Log("Resultado: " + op.result + ", Prejuizo: " + (value), ConsoleColor.Red);
+                    logger.Log("Result: " + op.result + ", Loss: " + (value), ConsoleColor.Red);
                 }
                 else
                 {
                     op.result = "draw";
-                    logger.Log("Resultado: " + op.result, ConsoleColor.Cyan);
+                    logger.Log("Result: " + op.result, ConsoleColor.Cyan);
                 }
                 tcs2.TrySetResult((op.result, gain));
             });
