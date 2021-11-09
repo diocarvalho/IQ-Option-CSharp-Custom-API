@@ -3,6 +3,9 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Version>0.5.2</Version>
+    <Authors>Dio Carvalho</Authors>
+    <Company />
   </PropertyGroup>
 
 </Project>
