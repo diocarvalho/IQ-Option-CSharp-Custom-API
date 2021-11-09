@@ -47,6 +47,13 @@ namespace IqApiNetCore
             debugging = debug;
             logger = new Logger(showConsole);
         }
+        public API()
+        {
+            tasker = new ConcurrentDictionary<string, TaskCompletionSource<Response>>();
+            serverTime = new ServerTime();
+            debugging = false;
+            logger = new Logger(false);
+        }
         //default options to buy
         public enum BuyDirection
         {
