@@ -30,9 +30,7 @@ using IqApiNetCore.Utilities;
 ```
 ### Connect
 ```
-bool debug = false;
-bool showConsole = false;
-API api = new API(debug, showConsole);
+API api = new API();
 connected = await api.ConnectAsync("username@username.com" "password");
 ```
 ### Change Balance Type
