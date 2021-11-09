@@ -5,11 +5,11 @@ using System.Collections.Concurrent;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Net;
-using IqApiNetCore.Models;
-using IqApiNetCore.Utilities;
+using IqApiNetFramework.Models;
+using IqApiNetFramework.Utilities;
 using System.Text.Json;
 using System.Collections.Specialized;
-namespace IqApiNetCore
+namespace IqApiNetFramework
 {    
     public class Message
     {
@@ -542,16 +542,16 @@ namespace IqApiNetCore
 
                 var jd = JsonDocument.Parse(tcs.Task.Result.id.ToString());
                 var cSearch = jd.RootElement.GetProperty("candles");
-                int count = 0;
+                int cnt = 0;
                 foreach (var c in cSearch.EnumerateArray())
                 {
-                    Candle candle = JsonSerializer.Deserialize<Candle>(cSearch[count].ToString());
+                    Candle candle = JsonSerializer.Deserialize<Candle>(cSearch[cnt].ToString());
                     candle.dir = (decimal)(candle.close - candle.open);
                     candle.fromDateTime = TimeStamp.FromTimeStamp(candle.from);
                     candle.toDateTime = TimeStamp.FromTimeStamp(candle.to);
                     if (candle.fromDateTime.Minute != serverTime.GetLocalServerDateTime().Minute || candle.fromDateTime.Hour != serverTime.GetLocalServerDateTime().Hour)
                         candles.Add(candle);
-                    count++;
+                    cnt++;
                 }
                 tcs2.TrySetResult(candles);
                 return tcs2.Task;
