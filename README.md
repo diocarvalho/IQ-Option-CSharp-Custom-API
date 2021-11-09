@@ -66,7 +66,7 @@ List<Candle> candles = await api.GetCandlesAsync(active, periodInSeconds, lastCa
 ```
 api.StartCandlesStream(); //used to start receiving candle realtime
 Candle lastCandle = await api.GetRealTimeCandlesAsync(active);
-//after enable, disable candlesStream if you do not use
+//after enable, disable candlesStream if you are not using
 //api.StopCandlesStream();
 ```
 ### Buy
