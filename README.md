@@ -1,5 +1,5 @@
 # IQOptionNetCoreCustomAPI
-I'm creating an custom IQ Option NetCore Api , to help peoples who want to automated create robots.
+I'm creating an custom IQ Option NetCore Api , to help peoples who want to create automated robots.
 ## For now, it's working:
 Get Server Time;
 Set Local Time;
