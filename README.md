@@ -1,25 +1,25 @@
 # IQOptionNetCoreCustomAPI
 I'm creating an custom IQ Option NetCore Api , to help peoples who want to create automated robots.
 ## For now, it's working:
-Get Server Time;
-Set Local Time;
-* Get Profile info;
-* Get Active list;
-* Get Balance Info;
-* Set Balance account type;
-* Get Candle List;
-* Get Realtime Candles;
-* Request Buy;
-* Get Result;
+* Get Server Time
+* Set Local Time
+* Get Profile info
+* Get Active list
+* Get Balance Info
+* Set Balance account type
+* Get Candle List
+* Get Realtime Candles
+* Request Buy
+* Check Buy Result
 ## Working Indicators
-* Sma;
-* Ema;
-* RSI;
-* MACD;
-* Bollinger Band;
-* Fractal;
-* Horizontal Support and Resistance;
-## Usage:
+* Sma
+* Ema
+* RSI
+* MACD
+* Bollinger Band
+* Fractal
+* Horizontal Support and Resistance
+## Usage
 ## Basic Functions
 
 ### Libraries
