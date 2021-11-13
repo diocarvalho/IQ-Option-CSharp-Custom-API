@@ -1,25 +1,25 @@
 # IQOptionNetCoreCustomAPI
-I'm creating an custom IQ Option NetCore Api , to help peoples who want to automated create robots.
+I'm creating an custom IQ Option NetCore Api , to help peoples who want to create automated robots.
 ## For now, it's working:
-Get Server Time;
-Set Local Time;
-* Get Profile info;
-* Get Active list;
-* Get Balance Info;
-* Set Balance account type;
-* Get Candle List;
-* Get Realtime Candles;
-* Request Buy;
-* Get Result;
+* Get Server Time
+* Set Local Time
+* Get Profile info
+* Get Active list
+* Get Balance Info
+* Set Balance account type
+* Get Candle List
+* Get Realtime Candles
+* Request Buy
+* Check Buy Result
 ## Working Indicators
-* Sma;
-* Ema;
-* RSI;
-* MACD;
-* Bollinger Band;
-* Fractal;
-* Horizontal Support and Resistance;
-## Usage:
+* Sma
+* Ema
+* RSI
+* MACD
+* Bollinger Band
+* Fractal
+* Horizontal Support and Resistance
+## Usage
 ## Basic Functions
 
 ### Libraries
@@ -30,9 +30,7 @@ using IqApiNetCore.Utilities;
 ```
 ### Connect
 ```
-bool debug = false;
-bool showConsole = false;
-API api = new API(debug, showConsole);
+API api = new API();
 connected = await api.ConnectAsync("username@username.com" "password");
 ```
 ### Change Balance Type
@@ -68,7 +66,7 @@ List<Candle> candles = await api.GetCandlesAsync(active, periodInSeconds, lastCa
 ```
 api.StartCandlesStream(); //used to start receiving candle realtime
 Candle lastCandle = await api.GetRealTimeCandlesAsync(active);
-//after enable, disable candlesStream if you do not use
+//after enable, disable candlesStream if you are not using
 //api.StopCandlesStream();
 ```
 ### Buy
