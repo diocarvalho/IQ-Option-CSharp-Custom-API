@@ -666,13 +666,13 @@ namespace IqApiNetCore
         }
 
         //Check result of buy operation with id of operation and value
-        public Task<(string, double)> CheckWinAsync(long id, double value)
+        public Task<(string, decimal)> CheckWinAsync(long id, decimal value)
         {
             logger.Log("waiting result");
             Message msg = new Message { id = "CheckWin:" + id, message = "" };
 
             var tcs = new TaskCompletionSource<Response>(); 
-            var tcs2 = new TaskCompletionSource<(string, double)>();
+            var tcs2 = new TaskCompletionSource<(string, decimal)>();
             SendWebSocketMessage(msg.message);
             if (!tasker.TryAdd(msg.id, tcs))
                 tcs2.TrySetCanceled();
@@ -681,7 +681,7 @@ namespace IqApiNetCore
                 tasker.TryRemove(msg.id, out TaskCompletionSource<Response> resp);
 
                 OperationResult op = (OperationResult)(tcs.Task.Result.id);
-                double gain = 0;
+                decimal gain = 0;
                 if (op.result == "win" || (op.result == null && op.win == "win"))
                 {
                     gain = op.win_amount - value;

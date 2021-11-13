@@ -138,39 +138,39 @@ namespace IqApiNetCore
             return rsiArray;
         }
 
-        public static float[] GetEMA(int period, List<Candle> candles)
+        public static decimal[] GetEMA(int period, List<Candle> candles)
         {
-            float multiplier = 2 / ((float)period + 1);
-            float[] ema = new float[candles.Count];
-            ema[0] = (float)candles[0].close;
+            decimal multiplier = 2 / ((decimal)period + 1);
+            decimal[] ema = new decimal[candles.Count];
+            ema[0] = candles[0].close;
             //float[] sma = GetSMA(period, candles);
             for (int i = 1; i < candles.Count; i++)
             {
-                ema[i] = ((float)candles[i].close - ema[i - 1]) * multiplier + ema[i - 1];
+                ema[i] = (candles[i].close - ema[i - 1]) * multiplier + ema[i - 1];
             }
             return ema;
         }
-        public static float[] GetSMA(int period, List<Candle> candles)
+        public static decimal[] GetSMA(int period, List<Candle> candles)
         {
-            float[] smaArray = new float[candles.Count];
+            decimal[] smaArray = new decimal[candles.Count];
             for (int i = 0; i < candles.Count; i++)
             {
                 if (i > period - 1)
                 {
-                    float sum = 0;
+                    decimal sum = 0;
                     for (int x = period - 1; x >= 0; x--)
                     {
-                        sum += (float)candles[i - x].close;
+                        sum += candles[i - x].close;
                     }
                     sum = sum / period;
                     smaArray[i] = sum;
                 }
                 else
                 {
-                    float sum = 0;
+                    decimal sum = 0;
                     for (int x = 0; x < period; x++)
                     {
-                        sum += (float)candles[i + x].close;
+                        sum += candles[i + x].close;
                     }
                     sum = sum / period;
                     smaArray[i] = sum;
@@ -181,18 +181,18 @@ namespace IqApiNetCore
 
         public static MACD GetMACD(int fastEMAPeriod, int slowEMAPeriod, int signalPeriod, List<Candle> candles)
         {
-            float[] fastEMA = GetEMA(fastEMAPeriod, candles);
-            float[] slowEMA = GetEMA(slowEMAPeriod, candles);
+            decimal[] fastEMA = GetEMA(fastEMAPeriod, candles);
+            decimal[] slowEMA = GetEMA(slowEMAPeriod, candles);
             float[] macd = new float[candles.Count];
             float[] hist = new float[candles.Count];
             for (int i = 0; i < candles.Count; i++)
             {
-                macd[i] = fastEMA[i] - slowEMA[i];
+                macd[i] = (float)fastEMA[i] - (float)slowEMA[i];
             }
             float[] signal = GetEMA(signalPeriod, macd);
             for (int i = 0; i < candles.Count; i++)
             {
-                hist[i] = macd[i] - slowEMA[i];
+                hist[i] = macd[i] - (float)slowEMA[i];
             }
             MACD m = new MACD() { macd = macd, signal = signal, histogram = hist };
             return m;
