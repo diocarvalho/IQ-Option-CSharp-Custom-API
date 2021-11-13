@@ -77,19 +77,19 @@ decimal buyValue = 1;
 ```
 ### GetResult
 ```
-(string result, double earnedValue) = await api.CheckWinAsync(operationId, buyValue); //result = win, loose and draw, if win return profit on earnedValue
+(string result, decimal earnedValue) = await api.CheckWinAsync(operationId, buyValue); //result = win, loose and draw, if win return profit on earnedValue
 ```
 
 ## Indicators
 ### Simple Moving Averages
 ```
 List<Candle> candleList = await api.GetCandlesAsync(active, periodInSeconds, lastCandleTimeStamp, candleCount);
-float[] sma = Indicators.GetSMA(period, candleList)
+decimal[] sma = Indicators.GetSMA(period, candleList)
 ```
 ### Exponential Moving Averages
 ```
 int period 12;
-float[] ema = Indicators.GetEMA(period, candleList)
+decimal[] ema = Indicators.GetEMA(period, candleList)
 ```
 ### Bollinger Band
 ```
@@ -111,6 +111,6 @@ float[] rsi = Indicators.GetRSI(period, candleList);
 ### Support And Resistance
 ```
 int startIndex = 0;
-float[] supports = Indicators.GetSupports(candlesList, startIndex);
-float[] resistances = Indicators.GetResistances(candlesList, startIndex);
+List<decimal> supports = Indicators.GetSupports(candlesList, startIndex);
+List<decimal> resistances = Indicators.GetResistances(candlesList, startIndex);
 ```
