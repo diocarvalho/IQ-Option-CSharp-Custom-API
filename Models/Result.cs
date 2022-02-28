@@ -7,5 +7,6 @@ namespace IqApiNetCore.Models
     public class Result
     {
         public Binary binary { get; set; }
+        public Binary turbo { get; set; }
     }
 }

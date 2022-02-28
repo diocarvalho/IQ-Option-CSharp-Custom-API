@@ -17,6 +17,7 @@ namespace IqApiNetCore
         public const string OptionChanged = "option-changed";
         public const string OptionClosed = "option-closed";
         public const string OptionArchived = "option-archived";
+        public const string Option = "option";
 
         public const string SocketOptionOpened = "socket-option-opened";
         public const string SocketOptionClosed = "socket-option-closed";
@@ -40,6 +41,5 @@ namespace IqApiNetCore
         public const string Quotes = "candle-generated";
 
         public const string PlacedDigitalOptions = "digital-option-placed";
-        public const string PlacedBinaryOptions = "option";
     }
 }

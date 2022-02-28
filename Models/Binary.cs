@@ -6,6 +6,6 @@ namespace IqApiNetCore.Models
 {
     public class Binary
     {
-        //public Active[] actives { get; set; }
+        public Dictionary<int, Active> actives { get; set; }       
     }
 }

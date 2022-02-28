@@ -23,7 +23,7 @@ namespace IqApiNetCore
         public decimal amount { get; set; }
         public bool is_fiat { get; set; }
         public string currency { get; set; }
-        public decimal new_amount { get; set; }
+        public float new_amount { get; set; }
         public bool is_marginal { get; set; }
         public long bonus_amount { get; set; }
         public double enrolled_amount { get; set; }

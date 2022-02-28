@@ -8,7 +8,7 @@ namespace IqApiNetCore
         public string account_status { get; set; }
         public string avatar { get; set; }
         public long confirmation_required { get; set; }
-        public Money money { get; set; }        
+        public Money money { get; set; }
         public string user_group { get; set; }
         public long welcome_splash { get; set; }
         public string finance_state { get; set; }
@@ -44,7 +44,7 @@ namespace IqApiNetCore
         public string postal_index { get; set; }
         public long timediff { get; set; }
         public long tz_offset { get; set; }
-        public Balance[] balances { get; set; }
+        public List<Balance> balances { get; set; }
         public long infeed { get; set; }
         public object[] confirmed_phones { get; set; }
         public bool? need_phone_confirmation { get; set; }
@@ -64,7 +64,7 @@ namespace IqApiNetCore
         public string flag { get; set; }
         public string user_circle { get; set; }
         public long deposit_amount { get; set; }
-       
+
     }
 
 }

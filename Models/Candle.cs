@@ -13,5 +13,14 @@ namespace IqApiNetCore.Models
         public decimal dir { get; set; }
         public DateTime fromDateTime { get; set; }
         public DateTime toDateTime { get; set; }
+        public long active_id { get; set; }
+        public void UpdateData(long actId)
+        {
+            dir = (decimal)(close - open);
+            fromDateTime = TimeConverter.FromTimeStamp(from);
+            toDateTime = TimeConverter.FromTimeStamp(to);
+            active_id = actId;
+        }
+
     }
 }

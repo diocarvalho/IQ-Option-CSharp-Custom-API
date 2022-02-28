@@ -1,0 +1,78 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\GoogleDrive\\Projetos\\Visual Studio\\C#\\IQOPTIONAPINETCORE\\IQOPTIONAPINETCORE\\IQOPTIONAPINETCORE.csproj": {}
+  },
+  "projects": {
+    "D:\\GoogleDrive\\Projetos\\Visual Studio\\C#\\IQOPTIONAPINETCORE\\IQOPTIONAPINETCORE\\IQOPTIONAPINETCORE.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\GoogleDrive\\Projetos\\Visual Studio\\C#\\IQOPTIONAPINETCORE\\IQOPTIONAPINETCORE\\IQOPTIONAPINETCORE.csproj",
+        "projectName": "IQOPTIONAPINETCORE",
+        "projectPath": "D:\\GoogleDrive\\Projetos\\Visual Studio\\C#\\IQOPTIONAPINETCORE\\IQOPTIONAPINETCORE\\IQOPTIONAPINETCORE.csproj",
+        "packagesPath": "C:\\Users\\Dio\\.nuget\\packages\\",
+        "outputPath": "D:\\GoogleDrive\\Projetos\\Visual Studio\\C#\\IQOPTIONAPINETCORE\\IQOPTIONAPINETCORE\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Dio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "RestSharp": {
+              "target": "Package",
+              "version": "[106.11.7, )"
+            },
+            "WebSocketSharp-netstandard": {
+              "target": "Package",
+              "version": "[1.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.407\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,11 +1,11 @@
 # IQOptionNetCoreCustomAPI
-I'm creating an custom IQ Option NetCore Api , to help peoples who want to create automated robots.
+This is my custom API for IQ OPTION, created using C# NETCORE 3.1
 ## For now, it's working:
 * Get Server Time
 * Set Local Time
 * Get Profile info
 * Get Active list
-* Get Balance Info
+* Get Profile Info
 * Set Balance account type
 * Get Candle List
 * Get Realtime Candles
@@ -18,7 +18,6 @@ I'm creating an custom IQ Option NetCore Api , to help peoples who want to creat
 * MACD
 * Bollinger Band
 * Fractal
-* Horizontal Support and Resistance
 ## Usage
 ## Basic Functions
 
@@ -35,12 +34,12 @@ connected = await api.ConnectAsync("username@username.com" "password");
 ```
 ### Change Balance Type
 ```
-await api.ChangeBalanceAsync(BalanceType.Real);
-await api.ChangeBalanceAsync(BalanceType.Practice);
+api.ChangeBalanceAsync(BalanceType.Real);
+api.ChangeBalanceAsync(BalanceType.Practice);
 ```
 ### Get Balance Value
 ```
-decimal balance = await api.GetCurrentBalanceAsync();
+decimal balance = api.profile.balance;
 ```
 ### Get Server Time
 ```
@@ -48,36 +47,55 @@ DateTime serverDateTime = api.serverTime.GetRealServerDateTime();
 ```
 ### Convert Server Time to TimeStamp
 ```
-long lastCandleTimeStamp = TimeStamp.FromDateTime(serverDateTime);
+long lastCandleTimeStamp = TimeConverter.FromDateTime(serverDateTime);
 ```
-### Get Active List
+### Get Active List(true for online actives, false for all
 ```
-(List<Active> binaryActives, List<Active> turboActives) = await api.GetActiveOptionDetailAsync();
+(List<Active> binaryActives, List<Active> turboActives) = await api.GetActiveList(true);
 ```
 ### Get Candle List
 ```
 Active active = turboActives[0];
 int periodInSeconds = 60
-long lastCandleTimeStamp = TimeStamp.FromDateTime(api.serverTime.GetRealServerDateTime());
+long lastCandleTimeStamp = TimeConverter.FromDateTime(api.serverTime.GetRealServerDateTime());
 int candleCount = 100;
 List<Candle> candles = await api.GetCandlesAsync(active, periodInSeconds, lastCandleTimeStamp, candleCount);
 ```
-### Get Current Candle
+### Start Candle Stream, all new candles changes be call added function
 ```
-api.StartCandlesStream(); //used to start receiving candle realtime
-Candle lastCandle = await api.GetRealTimeCandlesAsync(active);
-//after enable, disable candlesStream if you are not using
-//api.StopCandlesStream();
+int periodInSeconds = 60;
+Active active = turboActives[0];
+candles = new List<Candle>();
+api.StartCandlesStream(periodInSeconds,OnReceiveCandle); //used to start receiving candle realtime
+
+//function example
+void OnReceiveCandle(object data, EventArgs e)
+{  
+	Candle candle = (Candle)data;	
+	if(candle.active_id == active.id)
+	{
+		if (candles[candles.Count - 1].fromDateTime == candle.fromDateTime)
+                    candles[candles.Count - 1] = candle;
+                else
+                    candles.Add(candle);
+	}
+}
+
+```
+### Stop Candle Stream
+```
+api.StopCandlesStream();
+
 ```
 ### Buy
 ```
 API.BuyDirection direction = API.BuyDirection.put;  //API.BuyDirection.call to use CALL
 decimal buyValue = 1;
-(bool operationStatus, long operationId) = await api.BuyAsync(active, periodInSeconds, direction, buyValue);
+(string status, Operation op) = await api.BuyAsync(active, periodInSeconds, direction, buyValue);
 ```
 ### GetResult
 ```
-(string result, double earnedValue) = await api.CheckWinAsync(operationId, buyValue); //result = win, loose and draw, if win return profit on earnedValue
+OperationStatus opStat = await api.CheckBuyResult(op.option_id)
 ```
 
 ## Indicators
@@ -108,9 +126,4 @@ float[] rsi = Indicators.GetRSI(period, candleList);
 ```
 (decimal[] fracUp, decimal[] fracDown) = Indicators.GetFractal(period, candlesList);
 ```
-### Support And Resistance
-```
-int startIndex = 0;
-float[] supports = Indicators.GetSupports(candlesList, startIndex);
-float[] resistances = Indicators.GetResistances(candlesList, startIndex);
 ```

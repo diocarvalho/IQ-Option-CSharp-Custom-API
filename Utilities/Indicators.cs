@@ -51,7 +51,47 @@ namespace IqApiNetCore
         {
             decimal[] fracUp = new decimal[candles.Count];
             decimal[] fracDown = new decimal[candles.Count];
-            for (int i = period; i< candles.Count;i++)
+            for(int i = period; i < candles.Count;i++)
+            {
+                bool up = true;
+                decimal highValue = candles[i].max;
+                for (int x = 1; x < period; x++)
+                {
+                    if(candles[i-x].max > highValue)
+                    {
+                        up = false;
+                        break;
+                    }
+
+                }
+                if (up)
+                    fracUp[i] = 1;
+                else
+                    fracUp[i] = 0;
+                bool down = true;
+                decimal lowerValue = candles[i].min;
+                for (int x = 1; x < period; x++)
+                {
+                    if (candles[i - x].min < lowerValue)
+                    {
+                        down = false;
+                        break;
+                    }
+
+                }
+                if (down)
+                    fracDown[i] = 1;
+                else
+                    fracDown[i] = 0;
+            }
+            for(int i = 0; i < fracUp.Length;i++)
+            {
+                if (fracUp[i] != 0 && i != 0)
+                    fracUp[i - 1] = 0;
+                if (fracDown[i] != 0 && i != 0)
+                    fracDown[i - 1] = 0;
+            }
+            /*for (int i = period; i< candles.Count;i++)
             {
                 int per = period % 2 == 0 ? period - 1 : period;
                 int middleIndex = i - per / 2;
@@ -85,8 +125,125 @@ namespace IqApiNetCore
                 if (down)
                     fracDown[middleIndex] = middleValue;
 
-            }
+            }*/
             return (fracUp, fracDown);
+        }
+        public static (decimal[], decimal[]) GetFractalClose(int period, List<Candle> candles)
+        {
+            decimal[] fracUp = new decimal[candles.Count];
+            decimal[] fracDown = new decimal[candles.Count];
+            for (int i = period; i < candles.Count; i++)
+            {
+                bool up = true;
+                decimal highValue = candles[i].close;
+                for (int x = 1; x < period; x++)
+                {
+                    if (candles[i - x].close > highValue)
+                    {
+                        up = false;
+                        break;
+                    }
+
+                }
+                bool down = true;
+                decimal lowerValue = candles[i].close;
+                for (int x = 1; x < period; x++)
+                {
+                    if (candles[i - x].close < lowerValue)
+                    {
+                        down = false;
+                        break;
+                    }
+
+                }
+                if (up)
+                {
+                    fracUp[i] = 1;
+                    fracUp[i - 1] = 0;
+                }
+                else
+                    fracUp[i] = 0;
+                if (down)
+                {
+                    fracDown[i] = 1;
+                    fracDown[i - 1] = 0;
+                }
+                else
+                    fracDown[i] = 0;
+            }
+          
+            return (fracUp, fracDown);
+        }
+
+        public class FractalResult
+        {
+            public decimal FractalBear;
+            public decimal FractalBull;
+        }
+        public static (decimal[], decimal[]) GetFractalChaosBand(int period, List<Candle> candles)
+        {
+            (decimal[] upFrac, decimal[] downFrac) = GetFractal(period, candles);
+
+            decimal upperLine = 0, lowerLine = 0;
+
+            decimal[] upResults = new decimal[upFrac.Length];
+            decimal[] downResults = new decimal[downFrac.Length];
+            for (int i = 0; i < upFrac.Length;i++)
+            {
+                if (upFrac[i] == 1)
+                    upperLine = candles[i].max;
+                upResults[i] = upperLine;
+                if (downFrac[i] == 1)
+                    lowerLine = candles[i].min;
+                downResults[i] = lowerLine;
+            }
+            return (upResults, downResults);
+        }
+        public static (decimal[], decimal[]) GetBeta(int period, List<Candle> candles)
+        {
+            (decimal[] upFrac, decimal[] downFrac) = GetFractal(period, candles);
+
+            decimal upperLine = 0, lowerLine = 0;
+
+            decimal[] upResults = new decimal[upFrac.Length];
+            decimal[] downResults = new decimal[downFrac.Length];
+            for (int i = 0; i < upFrac.Length; i++)
+            {
+                if (upFrac[i] == 1)
+                    upperLine = candles[i].max;
+                else
+                    upperLine = 0;
+                upResults[i] = upperLine;
+                if (downFrac[i] == 1)
+                    lowerLine = candles[i].min;
+                else
+                    lowerLine = 0;
+                downResults[i] = lowerLine;
+            }           
+            return (upResults, downResults);
+        }
+        public static (decimal[], decimal[]) GetBeta2(int period, List<Candle> candles)
+        {
+            (decimal[] upFrac, decimal[] downFrac) = GetFractalClose(period, candles);
+
+            decimal upperLine = 0, lowerLine = 0;
+
+            decimal[] upResults = new decimal[upFrac.Length];
+            decimal[] downResults = new decimal[downFrac.Length];
+            for (int i = 0; i < upFrac.Length; i++)
+            {
+                if (upFrac[i] == 1)
+                    upperLine = candles[i].close;
+                else
+                    upperLine = 0;
+                upResults[i] = upperLine;
+                if (downFrac[i] == 1)
+                    lowerLine = candles[i].close;
+                else
+                    lowerLine = 0;
+                downResults[i] = lowerLine;
+            }
+            return (upResults, downResults);
         }
         public static float[] GetRSI(int period, List<Candle> candles)
         {
@@ -183,33 +340,110 @@ namespace IqApiNetCore
         {
             decimal[] fastEMA = GetEMA(fastEMAPeriod, candles);
             decimal[] slowEMA = GetEMA(slowEMAPeriod, candles);
-            float[] macd = new float[candles.Count];
-            float[] hist = new float[candles.Count];
+            decimal[] macd = new decimal[candles.Count];
+            decimal[] hist = new decimal[candles.Count];
             for (int i = 0; i < candles.Count; i++)
             {
-                macd[i] = (float)fastEMA[i] - (float)slowEMA[i];
+                macd[i] = fastEMA[i] - slowEMA[i];
             }
-            float[] signal = GetEMA(signalPeriod, macd);
+            decimal[] signal = GetEMA(signalPeriod, macd);
             for (int i = 0; i < candles.Count; i++)
             {
-                hist[i] = macd[i] - (float)slowEMA[i];
+                hist[i] = macd[i] - slowEMA[i];
             }
             MACD m = new MACD() { macd = macd, signal = signal, histogram = hist };
             return m;
         }
-        public static float[] GetEMA(int period, float[] values)
+        public static decimal[] GetEMA(int period, decimal[] values)
         {
-            float multiplier = 2 / ((float)period + 1);
-            float[] ema = new float[values.Length];
-            ema[0] = (float)values[0];
+            decimal multiplier = 2 / ((decimal)period + 1);
+            decimal[] ema = new decimal[values.Length];
+            ema[0] = values[0];
             //float[] sma = GetSMA(period, candles);
             for (int i = 1; i < values.Length; i++)
             {
-                ema[i] = ((float)values[i] - ema[i - 1]) * multiplier + ema[i - 1];
+                ema[i] = (values[i] - ema[i - 1]) * multiplier + ema[i - 1];
             }
             return ema;
         }
 
+        public static (decimal[],decimal[],decimal[]) GetAlligator(int jawPeriod, int jawDeviation, int teethPeriod, int teethDeviation, int leepsPeriod, int leepsDeviation, List<Candle> candles)
+        {
+            decimal[] jaw = new decimal[candles.Count];
+            for (int i = 0; i < candles.Count; i++)
+            {
+                if (i > jawPeriod + jawDeviation - 1)
+                {
+                    decimal sum = 0;
+                    for (int x = jawPeriod - 1; x >= 0; x--)
+                    {
+                        sum += candles[i - x - jawDeviation].close;
+                    }
+                    sum = sum / jawPeriod;
+                    jaw[i] = sum;
+                }
+                else
+                {
+                    decimal sum = 0;
+                    for (int x = 0; x < jawPeriod; x++)
+                    {
+                        sum += candles[i + x].close;
+                    }
+                    sum = sum / jawPeriod;
+                    jaw[i] = sum;
+                }
+            }
+           
+            decimal[] teeth = new decimal[candles.Count];
+            for (int i = 0; i < candles.Count; i++)
+            {
+                if (i > teethPeriod + teethDeviation - 1)
+                {
+                    decimal sum = 0;
+                    for (int x = teethPeriod - 1; x >= 0; x--)
+                    {
+                        sum += candles[i - x - teethDeviation].close;
+                    }
+                    sum = sum / teethPeriod;
+                    teeth[i] = sum;
+                }
+                else
+                {
+                    decimal sum = 0;
+                    for (int x = 0; x < teethPeriod; x++)
+                    {
+                        sum += candles[i + x].close;
+                    }
+                    sum = sum / teethPeriod;
+                    teeth[i] = sum;
+                }
+            }
+            decimal[] leeps = new decimal[candles.Count];
+            for (int i = 0; i < candles.Count; i++)
+            {
+                if (i > leepsPeriod + leepsDeviation - 1)
+                {
+                    decimal sum = 0;
+                    for (int x = leepsPeriod - 1; x >= 0; x--)
+                    {
+                        sum += candles[i - x - leepsDeviation].close;
+                    }
+                    sum = sum / leepsPeriod;
+                    leeps[i] = sum;
+                }
+                else
+                {
+                    decimal sum = 0;
+                    for (int x = 0; x < leepsPeriod; x++)
+                    {
+                        sum += candles[i + x].close;
+                    }
+                    sum = sum / leepsPeriod;
+                    leeps[i] = sum;
+                }
+            }
+            return (jaw, teeth, leeps);
+        }
 
         public static (List<decimal>, List<int>) GetLowPeaks(List<Candle> candles, int startIndex)
         {

@@ -1,0 +1,17 @@
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\bin\Debug\netcoreapp3.1\IQOPTIONAPINETCORE.exe
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\bin\Debug\netcoreapp3.1\IQOPTIONAPINETCORE.deps.json
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\bin\Debug\netcoreapp3.1\IQOPTIONAPINETCORE.runtimeconfig.json
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\bin\Debug\netcoreapp3.1\IQOPTIONAPINETCORE.runtimeconfig.dev.json
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\bin\Debug\netcoreapp3.1\IQOPTIONAPINETCORE.dll
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\bin\Debug\netcoreapp3.1\IQOPTIONAPINETCORE.pdb
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\obj\Debug\netcoreapp3.1\IQOPTIONAPINETCORE.csprojAssemblyReference.cache
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\obj\Debug\netcoreapp3.1\IQOPTIONAPINETCORE.AssemblyInfoInputs.cache
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\obj\Debug\netcoreapp3.1\IQOPTIONAPINETCORE.AssemblyInfo.cs
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\obj\Debug\netcoreapp3.1\IQOPTIONAPINETCORE.dll
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\obj\Debug\netcoreapp3.1\IQOPTIONAPINETCORE.pdb
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\obj\Debug\netcoreapp3.1\IQOPTIONAPINETCORE.genruntimeconfig.cache
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\bin\Debug\netcoreapp3.1\RestSharp.dll
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\obj\Debug\netcoreapp3.1\IQOPTIONAPINETCORE.csproj.CopyComplete
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\bin\Debug\netcoreapp3.1\websocket-sharp.dll
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\obj\Debug\netcoreapp3.1\IQOPTIONAPINETCORE.csproj.CoreCompileInputs.cache
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll

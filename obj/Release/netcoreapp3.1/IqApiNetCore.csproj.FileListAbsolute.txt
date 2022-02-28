@@ -1,0 +1,10 @@
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\bin\Release\netcoreapp3.1\IqApiNetCore.deps.json
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\bin\Release\netcoreapp3.1\IqApiNetCore.dll
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\bin\Release\netcoreapp3.1\IqApiNetCore.pdb
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\obj\Release\netcoreapp3.1\IqApiNetCore.csproj.AssemblyReference.cache
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\obj\Release\netcoreapp3.1\IqApiNetCore.GeneratedMSBuildEditorConfig.editorconfig
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\obj\Release\netcoreapp3.1\IqApiNetCore.AssemblyInfoInputs.cache
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\obj\Release\netcoreapp3.1\IqApiNetCore.AssemblyInfo.cs
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\obj\Release\netcoreapp3.1\IqApiNetCore.csproj.CoreCompileInputs.cache
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\obj\Release\netcoreapp3.1\IqApiNetCore.dll
+D:\GoogleDrive\Projetos\Visual Studio\C#\IQOPTIONAPINETCORE\IQOPTIONAPINETCORE\obj\Release\netcoreapp3.1\IqApiNetCore.pdb

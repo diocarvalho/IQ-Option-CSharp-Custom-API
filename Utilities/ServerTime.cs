@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Timers;
+using System.Threading.Tasks;
 namespace IqApiNetCore.Utilities
 {
     //Sync with remote server Time
@@ -8,6 +9,7 @@ namespace IqApiNetCore.Utilities
         private Timer serverTimer = new Timer();
         private DateTime serverDateTime = DateTime.Now;
         public int GMT = 0;
+        public TaskCompletionSource<bool> syncTask = new TaskCompletionSource<bool>();
         public bool synced = false;
         public DateTime GetLocalServerDateTime()
         {
@@ -20,7 +22,7 @@ namespace IqApiNetCore.Utilities
         }
         public long GetServerTimeStamp()
         {
-            return TimeStamp.FromDateTime(serverDateTime);
+            return TimeConverter.FromDateTime(serverDateTime);
         }
         public void SetSetverDateTime(DateTime time)
         {
@@ -30,6 +32,7 @@ namespace IqApiNetCore.Utilities
             serverTimer.Elapsed += ServerTimer_Elapsed;
             serverDateTime = time;
             serverTimer.Start();
+            syncTask.SetResult(true);
             synced = true;
         }
 
@@ -42,11 +45,12 @@ namespace IqApiNetCore.Utilities
         {
             try
             {
+                syncTask = new TaskCompletionSource<bool>();
                 if (serverTimer != null)
                 {
                     serverTimer.Stop();
                 }
-                DateTime st = TimeStamp.FromTimeStamp(time);
+                DateTime st = TimeConverter.FromTimeStamp(time);
                 serverDateTime = st;
                 TimeSpan span = DateTime.Now - serverDateTime.AddSeconds(120);
                 GMT = span.Hours;
@@ -56,10 +60,11 @@ namespace IqApiNetCore.Utilities
                 serverTimer.Elapsed += ServerTimer_Elapsed;
                 serverTimer.Interval = 1000;
                 serverTimer.Start();
+                syncTask.SetResult(true);
                 synced = true;
                 return true;
             }
-            catch
+            catch(Exception)
             {
                 return false;
             }

@@ -6,8 +6,8 @@ namespace IqApiNetCore.Models
 {
     public class MACD
     {
-        public float[] macd;
-        public float[] signal;
-        public float[] histogram;
+        public decimal[] macd;
+        public decimal[] signal;
+        public decimal[] histogram;
     }
 }
