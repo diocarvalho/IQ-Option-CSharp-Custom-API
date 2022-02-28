@@ -102,12 +102,12 @@ OperationStatus opStat = await api.CheckBuyResult(op.option_id)
 ### Simple Moving Averages
 ```
 List<Candle> candleList = await api.GetCandlesAsync(active, periodInSeconds, lastCandleTimeStamp, candleCount);
-float[] sma = Indicators.GetSMA(period, candleList)
+decimal[] sma = Indicators.GetSMA(period, candleList)
 ```
 ### Exponential Moving Averages
 ```
 int period 12;
-float[] ema = Indicators.GetEMA(period, candleList)
+decimal[] ema = Indicators.GetEMA(period, candleList)
 ```
 ### Bollinger Band
 ```
@@ -125,5 +125,4 @@ float[] rsi = Indicators.GetRSI(period, candleList);
 ### Fractal
 ```
 (decimal[] fracUp, decimal[] fracDown) = Indicators.GetFractal(period, candlesList);
-```
 ```
